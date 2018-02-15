@@ -3,6 +3,11 @@ body {
   font-family: helvetica, sans-serif;
 }
 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 h1 {
   font-weight: bold;
 }
@@ -10,6 +15,86 @@ h1 {
 h1 span {
   font-weight: normal;
 }
+
+/* Header styles */
+header {
+  background-color: #FE052C;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header h1 {
+  color: #FFF;
+  padding: 10px 2%;
+  margin: 0;
+  width: 16%;
+  float: left;
+  padding-left: 0;
+}
+
+/* Header navigation bar */
+header nav {
+  padding: 10px 2%;
+  width: 76%;
+  float: right;
+  text-align: right;
+  line-height: 30px;
+  margin-top: 0;
+  position: relative;
+  vertical-align: middle;
+}
+
+header nav a {
+  display:block;
+	padding:0 10px;
+	color:#FFF;
+	font-size:16px;
+	line-height: 40px;
+	text-decoration:none;
+  transition: 0.2s all;
+}
+
+header nav a:hover {
+  background-color: #fff;
+  color: #CC0020;
+}
+
+nav ul {
+	padding:0;
+	margin:0;
+  margin-right: 30px;
+	list-style: none;
+	position: relative;
+	}
+
+nav ul li {
+	display:inline-block;
+	background-color: #CC0020;
+  position: relative;
+}
+
+nav ul ul {
+	display: none;
+	position: absolute;
+	top: 40px;
+  right: -30px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+
+/* First Tier Dropdown */
+nav ul ul li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
 
 .images {
   display: flex;
