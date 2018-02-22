@@ -76,7 +76,7 @@ $button.on('click', e => {
 
 
 $.get(
-  'http://api.soundcloud.com/tracks?&tags=' + $searchInput.val() + '&client_id=b67ae3e0a89f0afc33278a1f858d8525',
+  'https://api.soundcloud.com/tracks?&tags=' + $searchInput.val() + '&client_id=b67ae3e0a89f0afc33278a1f858d8525',
   function (result) {
   //  console.log(result[0]);
     var track = result[0];
