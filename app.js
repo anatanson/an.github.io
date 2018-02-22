@@ -1,11 +1,15 @@
 
 
 //for trying soundcloud :) -->
-
-// SC.initialize({
-//   client_id: 'b67ae3e0a89f0afc33278a1f858d8525'
+window.onload = function() {
+SC.initialize({
+  client_id: 'b67ae3e0a89f0afc33278a1f858d8525'
+});
+};
+// SC.stream("/tracks/293", function(sound){
+//     $("audio-test").attr("src", sound.uri);
 // });
-//
+
 // var getTracks = function () {
 //   return SC.get('/me/tracks', { limit: 1 });
 // };
@@ -22,14 +26,14 @@
 //   q: 'buskers',
 // }).then(function(tracks) {
 //   console.log(tracks);
-//
-//   SC.stream(tracks(0)).then(function(player){
-//     player.play().then(function(){
-//       console.log('Playback started!');
-//     }).catch(function(e){
-//       console.error('Playback rejected. Try calling play() from a user interaction.', e);
-//     });
-//   });
+
+  // SC.stream(tracks(0)).then(function(player){
+  //   player.play().then(function(){
+  //     console.log('Playback started!');
+  //   }).catch(function(e){
+  //     console.error('Playback rejected. Try calling play() from a user interaction.', e);
+  //   });
+  // });
 // });
 
 
@@ -47,7 +51,6 @@ var search = {
     $.getJSON(this.giphyData())
       .success(data => {
         var results = data.data;
-
         var url = results[0].images.downsized.url;
         console.log(results[0]);
         gif(url);
@@ -56,14 +59,35 @@ var search = {
 }
 
 
+
+
+
+
 function makeGif(src = '//giphy.com/embed/') {
   return `<img src="${src}" />`;
 }
 
 $button.on('click', e => {
-  var key = e.which || e.keyCode;
   search.text = $searchInput.val();
   search.fetch(url => {
       $resultWrapper.html(makeGif(url));
 });
-});
+
+
+
+$.get(
+  'http://api.soundcloud.com/tracks?&tags=' + $searchInput.val() + '&client_id=b67ae3e0a89f0afc33278a1f858d8525',
+  function (result) {
+  //  console.log(result[0]);
+    var track = result[0];
+    console.log(track);
+    SC.stream("tracks/" + track.id).then(function(player){
+      player.play()
+    });
+  }
+);
+
+
+
+
+}); //closes button click
