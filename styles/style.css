@@ -1,117 +1,182 @@
-body {
-  background-color: blue;
-  font-family: helvetica, sans-serif;
+$blue: #2196F3;
+$transition: 300ms ease;
+
+html {
+  box-sizing: border-box;
+  outline: none;
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+
+    &:focus {
+      outline: inherit;
+    }
+  }
 }
 
-.container {
-  max-width: 1000px;
+.title {
+  text-align: center;
+  font-weight: 200;
+  margin-top: 50px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto 0;
+
+  .query {
+    height: 50px;
+    width: 100%;
+    display: block;
+    padding: 0 25px;
+    border: 1px solid #ccc;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $blue;
+
+      transition: $transition;
+    }
+
+    transition: $transition;
+  }
+
+  .loader {
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    background: white;
+    margin: 0 auto;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: $blue;
+      width: 0%;
+      height: 5px;
+
+      transition: $transition;
+    }
+
+    &.done {
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+
+  .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 30px;
+    opacity: 1;
+
+    &:before {
+      content: '\00d7';
+      color: $blue;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 100%;
+      line-height: 50px;
+
+      transition: $transition;
+    }
+
+    &:hover {
+      &:before {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.active {
+    margin-top: -55px;
+
+    .query {
+      height: 30px;
+      margin-top: 0px;
+
+      transition: $transition;
+    }
+
+    .clear {
+      height: 30px;
+
+      &:before {
+        line-height: 30px;
+      }
+    }
+  }
+
+  &.empty {
+    .clear {
+      opacity: 0;
+    }
+  }
+
+  transition: $transition;
+}
+
+.result {
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 5% 25px 0;
+  /* background: #eee; */
+
+  img, p.no-results {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    opacity: 1;
+
+    &.hidden {
+      opacity: 0;
+
+      transition: $transition;
+    }
+
+    transition: $transition;
+  }
+
+  p.no-result {
+    font-weight: 200;
+
+    &.center {
+      text-align: center;
+    }
+  }
 }
 
-h1 {
-  font-weight: bold;
-}
+.random {
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto;
+  height: 50px;
+  display: block;
 
-h1 span {
-  font-weight: normal;
-}
+  background: $blue;
+  color: white;
+  border: none;
 
-/* Header styles */
-header {
-  background-color: #FE052C;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
+  opacity: 0;
 
-header h1 {
-  color: #FFF;
-  padding: 10px 2%;
-  margin: 0;
-  width: 16%;
-  float: left;
-  padding-left: 0;
-}
+  &:hover {
+    background: darken($blue, 10%);
+  }
 
-/* Header navigation bar */
-header nav {
-  padding: 10px 2%;
-  width: 76%;
-  float: right;
-  text-align: right;
-  line-height: 30px;
-  margin-top: 0;
-  position: relative;
-  vertical-align: middle;
-}
+  &.active {
+    opacity: 1;
+  }
 
-header nav a {
-  display:block;
-	padding:0 10px;
-	color:#FFF;
-	font-size:16px;
-	line-height: 40px;
-	text-decoration:none;
-  transition: 0.2s all;
-}
-
-header nav a:hover {
-  background-color: #fff;
-  color: #CC0020;
-}
-
-nav ul {
-	padding:0;
-	margin:0;
-  margin-right: 30px;
-	list-style: none;
-	position: relative;
-	}
-
-nav ul li {
-	display:inline-block;
-	background-color: #CC0020;
-  position: relative;
-}
-
-nav ul ul {
-	display: none;
-	position: absolute;
-	top: 40px;
-  right: -30px;
-}
-
-/* Display Dropdowns on Hover */
-nav ul li:hover > ul {
-	display:inherit;
-}
-
-/* First Tier Dropdown */
-nav ul ul li {
-	width:170px;
-	float:none;
-	display:list-item;
-	position: relative;
-}
-
-
-.images {
-  display: flex;
-  flex-wrap: wrap;
-  height: 1000px;
-}
-
-.image {
-  flex: 1 1 200px;
-  margin: 3px;
-  background-size: cover;
-}
-
-.image-results-view {
-  display: none;
-}
-
-.btn-default {
-  margin-top: 4em;
+  transition: $transition;
 }
